@@ -1,0 +1,15 @@
+{
+    "name": "sirufanuel/watchtower360",
+    "description": "A web application for reporting and managing neighborhood incidents.",
+    "type": "project",
+    "require": {
+        "swiftmailer/swiftmailer": "^6.3"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Fanuel Siru"
+        }
+    ],
+    "minimum-stability": "stable"
+}

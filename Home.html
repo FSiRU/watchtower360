@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchTower360 - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #061539, #000000);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            background: #ffffff;
+            color: #000;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:hover {
+            background: #ffcc00;
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?security,city') center/cover no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background: #ffffff;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+            background: #222;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.4);
+        }
+
+        .feature h2 {
+            color: #ffcc00;
+        }
+
+        /* Scroll Button */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">WatchTower360</div>
+        <nav>
+            <a href="login.php" class="btn">Login</a>
+            <a href="Registration.php" class="btn">Register</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Enhancing Community Security with Real-Time Alerts<span id="typed-text"></span></h1>
+            <p>Join a network of residents and law enforcement working together for a safer neighborhood.</p>
+            <a href="Registration.php" class="btn">Get Started</a>
+        </div>
+        <div class="scroll-down">&#x25BC;</div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h2>Real-Time Crime Reporting</h2>
+            <p>Report suspicious activities instantly and keep your community informed.</p>
+        </div>
+        <div class="feature">
+            <h2>Instant Alerts</h2>
+            <p>Receive real-time notifications about security threats in your area.</p>
+        </div>
+        <div class="feature">
+            <h2>Data-Driven Security</h2>
+            <p>Analyze crime patterns to improve safety measures in your community.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 WatchTower360. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $(".scroll-down").click(function() {
+                $('html, body').animate({ scrollTop: $(".features").offset().top }, 800);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics & Reports</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #141E30, #243B55);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            min-width: 200px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+        }
+
+        .charts-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .chart-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .chart-box:hover {
+            transform: scale(1.05);
+        }
+
+        .filter-container {
+            margin-bottom: 20px;
+        }
+
+        select, button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .btn-download {
+            background: #FFD700;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Analytics & Reports</h2>
+    
+    <div class="stats-container">
+        <div class="stat-box">
+            <h3>Total Incidents</h3>
+            <p id="totalIncidents">120</p>
+        </div>
+        <div class="stat-box">
+            <h3>Most Common Type</h3>
+            <p id="commonType">Theft</p>
+        </div>
+        <div class="stat-box">
+            <h3>Avg. Response Time</h3>
+            <p id="responseTime">15 min</p>
+        </div>
+    </div>
+
+    <div class="filter-container">
+        <label for="dateFilter">Filter by Date:</label>
+        <select id="dateFilter">
+            <option value="7">Last 7 Days</option>
+            <option value="30">Last 30 Days</option>
+            <option value="365">Last Year</option>
+        </select>
+        <button class="btn-download" onclick="downloadReport()">Download Report</button>
+    </div>
+    
+    <div class="charts-container">
+        <div class="chart-box">
+            <h3>Incident Types</h3>
+            <canvas id="incidentChart"></canvas>
+        </div>
+        <div class="chart-box">
+            <h3>Monthly Reports</h3>
+            <canvas id="monthlyChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const incidentCtx = document.getElementById('incidentChart').getContext('2d');
+        new Chart(incidentCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Theft', 'Vandalism', 'Assault', 'Fire', 'Other'],
+                datasets: [{
+                    data: [30, 20, 15, 10, 25],
+                    backgroundColor: ['#FF5733', '#FFC300', '#28A745', '#007BFF', '#8E44AD']
+                }]
+            },
+            options: { animation: { duration: 2000 } }
+        });
+
+        const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+        new Chart(monthlyCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Reports',
+                    data: [5, 10, 8, 15, 12, 18],
+                    borderColor: '#FFD700',
+                    fill: false,
+                }]
+            },
+            options: { animation: { duration: 2000 } }
+        });
+
+        function downloadReport() {
+            alert('Report Downloaded Successfully!');
+        }
+    </script>
+</body>
+</html>
