@@ -3,215 +3,514 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WatchTower360 - Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="WatchTower360 - Community security platform with real-time alerts and crime reporting">
+    <title>WatchTower360 - Enhancing Community Security</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* General Styles */
-        body {
+        /* ===== Base Styles ===== */
+        :root {
+            --primary: #061539;
+            --secondary: #000000;
+            --accent: #ffcc00;
+            --text-light: #ffffff;
+            --text-dark: #000000;
+            --card-bg: #222222;
+            --header-bg: rgba(0, 0, 0, 0.8);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #061539, #000000);
-            color: #ffffff;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* Header */
+        
+        /* ===== Typography ===== */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* ===== Header ===== */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 1.5rem 5%;
             width: 100%;
             position: fixed;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            box-sizing: border-box;
+            transition: var(--transition);
         }
-
+        
+        header.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         .logo {
-            font-size: 30px;
-            font-weight: bold;
-            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
         }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 20px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: all 0.3s;
-            background: #ffffff;
-            color: #000;
-            font-weight: bold;
+        
+        .logo i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+        
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        /* ===== Buttons ===== */
+        .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
         }
-
-        nav a:hover {
-            background: #ffcc00;
-            color: #000;
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
         }
-
-        /* Hero Section */
+        
+        .btn-primary:hover {
+            background: var(--text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--text-dark);
+        }
+        
+        /* ===== Hero Section ===== */
         .hero {
             position: relative;
             height: 100vh;
+            min-height: 600px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: url('https://source.unsplash.com/1600x900/?security,city') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://source.unsplash.com/1600x900/?security,city,neighborhood') center/cover no-repeat;
+            padding: 0 5%;
         }
-
+        
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 600px;
+            max-width: 800px;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease-out forwards;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
         }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
         }
-
-        .btn {
-            background: #ffcc00;
-            color: #000;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-            transition: all 0.3s;
-            display: inline-flex;
+        
+        /* ===== Features Section ===== */
+        .features {
+            padding: 6rem 5%;
+            background: var(--secondary);
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* ===== Testimonials ===== */
+        .testimonials {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, var(--secondary), var(--primary));
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .testimonial-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: -1.5rem;
+            left: 1rem;
+            color: rgba(255, 204, 0, 0.2);
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            margin-top: 1.5rem;
+        }
+        
+        .testimonial-author h3 {
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        
+        .testimonial-author p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+        
+        /* ===== CTA Section ===== */
+        .cta {
+            padding: 6rem 5%;
+            text-align: center;
+            background: var(--primary);
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background: var(--secondary);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
-
-        .btn:hover {
-            background: #ffffff;
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
         }
-
+        
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        /* ===== Scroll Button ===== */
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+            transition: var(--transition);
+        }
+        
+        .scroll-down:hover {
+            color: var(--accent);
+        }
+        
+        /* ===== Animations ===== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        /* Features Section */
-        .features {
-            display: flex;
-            justify-content: space-around;
-            padding: 50px 20px;
-            position: relative;
-            z-index: 2;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .feature {
-            text-align: center;
-            max-width: 300px;
-            padding: 20px;
-            background: #222;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.4);
-        }
-
-        .feature h2 {
-            color: #ffcc00;
-        }
-
-        /* Scroll Button */
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 30px;
-            cursor: pointer;
-            animation: bounce 1.5s infinite;
-        }
-
+        
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0) translateX(-50%); }
+            50% { transform: translateY(-15px) translateX(-50%); }
         }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #fff;
+        
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding-top: 120px;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .features-container, .testimonial-container {
+                grid-template-columns: 1fr;
+            }
         }
-
-
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="logo">WatchTower360</div>
+    <header id="main-header">
+        <div class="logo">
+            <span>WatchTower360</span>
+        </div>
         <nav>
-            <a href="login.php" class="btn">Login</a>
-            <a href="Registration.php" class="btn">Register</a>
+            <a href="login.php" class="btn btn-outline">Login</a>
+            <a href="Registration.php" class="btn btn-primary">Register</a>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Enhancing Community Security with Real-Time Alerts<span id="typed-text"></span></h1>
-            <p>Join a network of residents and law enforcement working together for a safer neighborhood.</p>
-            <a href="Registration.php" class="btn">Get Started</a>
+            <h1>Enhancing Community Security with Real-Time Alerts</h1>
+            <p>Join our network of residents and law enforcement working together to create safer neighborhoods through instant reporting and data-driven solutions.</p>
+            <div class="hero-buttons">
+                <a href="Registration.php" class="btn btn-primary">Get Started</a>
+                <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
         </div>
-        <div class="scroll-down">&#x25BC;</div>
+        <div class="scroll-down" id="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </section>
 
-    <section class="features">
-        <div class="feature">
-            <h2>Real-Time Crime Reporting</h2>
-            <p>Report suspicious activities instantly and keep your community informed.</p>
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h2>Real-Time Crime Reporting</h2>
+                <p>Instantly report suspicious activities through our web-friendly platform and keep your entire community informed within seconds.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h2>Geo-Targeted Alerts</h2>
+                <p>Receive location-based notifications about security threats in your immediate area with customizable alert ranges.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2>Data Analytics</h2>
+                <p>Access detailed crime pattern analysis and statistics to make informed decisions about neighborhood safety measures.</p>
+            </div>
         </div>
-        <div class="feature">
-            <h2>Instant Alerts</h2>
-            <p>Receive real-time notifications about security threats in your area.</p>
+    </section>
+
+    <section class="testimonials">
+        <h2>Trusted by the Community</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"Since implementing WatchTower360 in our neighborhood, we've seen a 40% reduction in break-ins. The real-time alerts have been game-changing."</p>
+                <div class="testimonial-author">
+                    <h3>Fanuel Siru</h3>
+                    <p>Local Resident</p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"The integration with local law enforcement has significantly improved our response times to incidents in the community."</p>
+                <div class="testimonial-author">
+                    <h3>Officer Godfrey</h3>
+                    <p>Local Police Department</p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"As a parent, I feel much safer knowing I'll get instant alerts about any security concerns near my children's school."</p>
+                <div class="testimonial-author">
+                    <h3>Maurice Okoth</h3>
+                    <p>Community Member</p>
+                </div>
+            </div>
         </div>
-        <div class="feature">
-            <h2>Data-Driven Security</h2>
-            <p>Analyze crime patterns to improve safety measures in your community.</p>
+    </section>
+
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Ready to Make Your Community Safer?</h2>
+            <p>Join thousands of residents who are already benefiting from WatchTower360's comprehensive security platform.</p>
+            <a href="Registration.php" class="btn btn-primary">Start Your Free Trial</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 WatchTower360. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>WatchTower360</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 WatchTower360. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
         $(document).ready(function() {
-            $(".scroll-down").click(function() {
-                $('html, body').animate({ scrollTop: $(".features").offset().top }, 800);
+            // Smooth scrolling
+            $("#scroll-down").click(function() {
+                $('html, body').animate({
+                    scrollTop: $("#features").offset().top
+                }, 800);
             });
+            
+            // Header scroll effect
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#main-header').addClass('scrolled');
+                } else {
+                    $('#main-header').removeClass('scrolled');
+                }
+            });
+            
+            // Animate elements when they come into view
+            function animateOnScroll() {
+                $('.feature, .testimonial').each(function() {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    
+                    if (scroll + windowHeight > position + 100) {
+                        $(this).css({
+                            'opacity': '1',
+                            'transform': 'translateY(0)'
+                        });
+                    }
+                });
+            }
+            
+            // Set initial state
+            $('.feature, .testimonial').css({
+                'opacity': '0',
+                'transform': 'translateY(30px)',
+                'transition': 'all 0.6s ease-out'
+            });
+            
+            // Run on load and scroll
+            animateOnScroll();
+            $(window).scroll(animateOnScroll);
         });
     </script>
 </body>
